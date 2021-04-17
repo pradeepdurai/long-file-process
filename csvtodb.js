@@ -1,9 +1,15 @@
-const { fork } = require("child_process");
+process.on("message", message => {
+    const jsonResponse = uploadData(message.request);
+    process.send(jsonResponse);
+    process.exit();
+})
+
 const csv = require('csv-parse');
 const formidable = require("formidable");
 const fs = require('fs');
 
-exports.uploadCsv = (req, res) => {
+function uploadData(req) {
+
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, file) => {
@@ -20,11 +26,13 @@ exports.uploadCsv = (req, res) => {
             })
             .on('end', () => {
                 const childProcess = fork('./uploadCsv');
-                childProcess.send({ "csvData": result})
+                childProcess.send({ "csvData": result })
                 childProcess.on("message", message => {
-                    console.log(message)
-                    return res.send(message);
+                    return {
+                        "record" : result
+                    }
                 })
             })
     });
+    
 }

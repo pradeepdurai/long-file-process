@@ -6,10 +6,7 @@ process.on("message", message => {
 
 
 function uploadData(data) {
-    console.log(`I am working....${data[0]}`)
-    for(var i=0; i<data.length; i++){
-        console.log(`----${data[0]}`); 
-    }
+    console.log(`I am working....${data}`)
     return {
         "record" : data.length,
         }

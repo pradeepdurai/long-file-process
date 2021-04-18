@@ -3,7 +3,17 @@ process.on("message", async(message) => {
     var data = message.csvData;
     await mongoose.connect(URI, OPTS);
     let found = await Test.collection.insertMany(data);
-    process.send(found);
+    let NoOfAcc = await Test.aggregate([
+        {$group : {_id : "$name", count:{$sum : 1}}}
+    ])
+
+    let IsRecordExist = await ProductCount.find({})
+    if(IsRecordExist.length >0){
+        
+    } else {
+        let InsertCount = await ProductCount.collection.insertMany(NoOfAcc)
+    }
+    process.send(NoOfAcc);     
     return connection.close();
 })
 
@@ -32,3 +42,14 @@ const schema = new Schema({
 });
 
 const Test = mongoose.model('Product', schema);
+
+const productInfo = new Schema({
+    name : {
+        type : String,
+    },
+    noOfProduct : {
+        type : Number,
+    }
+})
+
+const ProductCount = mongoose.model('productInfo', productInfo);

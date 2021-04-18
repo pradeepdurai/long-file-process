@@ -1,3 +1,8 @@
+// process.on("message", message => {
+//     const jsonResponse =  uploadData(message.csvData);
+//     process.send(jsonResponse);
+//     process.exit();
+// })
 
 process.on("message", async(message) => {
     var data = message.csvData;
@@ -7,6 +12,21 @@ process.on("message", async(message) => {
     return connection.close();
 })
 
+
+// const product = require('../Models/product')
+// function uploadData(data) {
+//     var csvFile = new product(data[0])
+//     csvFile.save((err, product) => {
+//         if (!err) {
+//             return {
+//                 "record": err
+//             }
+//         }
+//     })
+//     return {
+//         "record": data[0]
+//     }
+// }
 const mongoose = require('mongoose');
 const { Schema, connection } = mongoose;
 const URI = 'mongodb://localhost:27017/products';
@@ -32,3 +52,12 @@ const schema = new Schema({
 });
 
 const Test = mongoose.model('Product', schema);
+
+async function uploadData() {
+  await mongoose.connect(URI, OPTS);
+  let found = await Test.find({});
+  process.send(found);
+  return connection.close();
+}
+
+// uploadData()

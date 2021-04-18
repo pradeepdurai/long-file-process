@@ -16,15 +16,6 @@ exports.uploadCsv = (req, res) => {
         csvtojson()
             .fromFile(file.csvFile.path)
             .then(csvData => {
-                // var csvFile = new product(csvData[0])
-                // csvFile.save((err, product) => {
-                //     if (!err) {
-                //         return {
-                //             "record": err
-                //         }
-                //     }
-                // })
-                // require('./uploadCsv.js')
                 const childProcess = fork('./uploadCsv.js');
                 childProcess.send({ "csvData": csvData })
                 childProcess.on("message", message => { 

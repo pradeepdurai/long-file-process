@@ -10,7 +10,7 @@ process.on("message", async(message) => {
     let IsRecordExist = await ProductCount.find({})
     if(IsRecordExist.length >0){
         
-    } else {
+    } else { 
         let InsertCount = await ProductCount.collection.insertMany(NoOfAcc)
     }
     process.send(NoOfAcc);     

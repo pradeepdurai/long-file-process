@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Product List</h1>
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">SKU</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each data }}
+    <tr>
+        {{#each this}}
+        {{#if this.name}}
+        <td >{{this.name}}</td>
+        {{/if}}
+        {{/each}}
+       {{#each this}}
+        {{#if this.sku}}
+        <td>{{this.sku}}</td>
+        {{/if}}
+        {{/each}}
+       {{#each this}}
+        {{#if this.description}}
+        <td>{{this.description}}</td>
+        {{/if}}
+        {{/each}}
+        {{#each this}}
+        {{#if this.sku}}
+        <td> <a href="/list/edit/{{this.sku}}"> <i class="fa fa-edit"></i> </a></td>
+        {{/if}}
+        {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

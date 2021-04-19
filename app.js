@@ -8,6 +8,15 @@ require("dotenv").config();
 const mongoose = require('mongoose');
 const port = 2312;
 
+// Creating Handlebars for front-end Views 
+const handlebars = require('express-handlebars')
+app.set('view engine', 'hbs')
+app.engine('hbs', handlebars({
+    layoutsDir : `${__dirname}/views/layouts`,
+    extname : 'hbs'
+}))
+app.use(express.static('public'))
+
 mongoose.connect('mongodb://localhost/products',{
     useNewUrlParser:true, 
     useUnifiedTopology: true,
@@ -16,10 +25,16 @@ mongoose.connect('mongodb://localhost/products',{
     console.log("DB is Connected")
 })
 const csvRoutes = require('./Router/csv');
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(cors());
+const listRoutes = require('./Router/list')
 
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(cors());
 app.use("/csv",csvRoutes)
+app.use("/list", listRoutes)
+app.get("/", (req,res)=>{
+    res.render('main',{layout:'index'})
+})
+
 
 app.listen(port, () =>{ console.log(`Server Running on port${port}`)})

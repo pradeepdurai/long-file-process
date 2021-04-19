@@ -1,0 +1,30 @@
+<div class="container mt-4 p-5 alert alert-primary">
+    <h1>Long File Processing</h1>
+   <form id="csvForm" action="/csv/upload" method="post" enctype="multipart/form-data" class="mt-5">
+    <div class="form-group">
+    <label for="Import Csv" class="text-default">Import CSV</label>
+    <input type="file" name="csvFile" class="form-control" id="csvFile"  placeholder="Enter email">
+  </div>
+  <div class="row">
+      <div class="col-1"> <button type="submit" class="btn btn-primary">Submit</button></div>
+      <div class="col-2"><div class="loader " style="display:none"></div></div>
+  </div>
+   </form>
+</div>
+    
+<script>
+    $(()=>{
+        $("#csvForm").submit((event)=>{
+            var IsFileSelect = $("#csvFile").val() == '' ? false : true ;
+            var data = new FormData();
+            if(IsFileSelect){
+                 var file = $("#csvFile").prop('files')[0];
+                 $(".loader").show();
+                data.set('csvFile', file)
+                return true;
+            } else {
+                return false;
+            }
+        })
+    })
+</script>

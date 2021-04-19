@@ -19,7 +19,7 @@ exports.uploadCsv = (req, res) => {
                 const childProcess = fork('./uploadCsv.js');
                 childProcess.send({ "csvData": csvData })
                 childProcess.on("message", message => { 
-                    return res.json(message);
+                    return  res.render('main',{layout:'index'})
                 })
             });
     });

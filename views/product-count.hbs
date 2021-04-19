@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Product Count</h1>
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each data }}
+    <tr>
+        {{#each this}}
+        {{#if this._id}}
+        {{#if @first}}
+        <td >{{this._id}}</td>
+        {{/if}}
+        {{/if}}
+        {{/each}}
+
+       {{#each this}}
+        {{#if this.count}}
+        <td>{{this.count}}</td>
+        {{/if}}
+        {{/each}}
+
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

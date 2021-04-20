@@ -3,8 +3,21 @@ const productInfo = require("../Models/productInfo")
 const formidable = require("formidable");
 const fs = require('fs');
 exports.getAllProducts = (req,res)=>{
-    product.find().limit(20).exec((err, productList)=>{
-        res.render('list-product',{layout:'index', data : productList})
+    var skip = req.query.page || "0";
+    var perPage = 20*parseInt(skip);
+    var hasNext = 20*(parseInt(skip)+1);
+     Next = false;
+    product.find().skip(hasNext).limit(20).exec((err,has)=>{
+        Next = true
+    })
+    product.find().skip(perPage).limit(20).exec((err, productList)=>{
+        dataDetails = {
+            data : productList,
+            next : Next,
+            nextLink :(parseInt(skip)+1),
+            previous : (parseInt(skip)-1)
+        }
+        res.render('list-product',{layout:'index', data : dataDetails})
     })
     
 }
@@ -20,7 +33,20 @@ exports.updateProduct = (req,res) =>{
 }
 
 exports.count = (req,res) =>{
-    productInfo.find({}).limit(10).exec((err,countList)=>{
-        res.render('product-count',{layout:'index', data : countList})
+    var skip = req.query.page || "0";
+    var perPage = 20*parseInt(skip);
+    var hasNext = 20*(parseInt(skip)+1);
+    Next = false;
+    productInfo.find().skip(hasNext).limit(20).exec((err,has)=>{
+        Next = true
+    })
+    productInfo.find({}).skip(perPage).skip(perPage).limit(10).exec((err,countList)=>{
+        dataDetails = {
+            data : countList,
+            next : Next,
+            nextLink :(parseInt(skip)+1),
+            previous : (parseInt(skip)-1)
+        }
+        res.render('product-count',{layout:'index', data : dataDetails})
     })
 }

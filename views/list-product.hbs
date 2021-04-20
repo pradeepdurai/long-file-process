@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-      {{#each data }}
+      {{#each data.data }}
     <tr>
         {{#each this}}
         {{#if this.name}}
@@ -33,6 +33,12 @@
         {{/each}}
     </tr>
     {{/each}}
+       {{#if data.previous}}
+    <a href="/list/products?page={{data.previous}}" class="btn btn-success mr-3">&lt; &lt;Back </a>
+    {{/if}}
+    {{#if data.nextLink}}
+    <a href="/list/products?page={{data.nextLink}}" class="btn btn-success">Next>></a>
+    {{/if}}
   </tbody>
 </table>
 </div>

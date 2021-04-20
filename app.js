@@ -17,7 +17,7 @@ app.engine('hbs', handlebars({
 }))
 app.use(express.static('public'))
 
-mongoose.connect('mongodb://localhost/products',{
+mongoose.connect('mongodb://mongo:27017/products',{
     useNewUrlParser:true, 
     useUnifiedTopology: true,
     useCreateIndex:true

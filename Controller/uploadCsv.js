@@ -29,7 +29,7 @@ process.on("message", async(message) => {
 // }
 const mongoose = require('mongoose');
 const { Schema, connection } = mongoose;
-const URI = 'mongodb://localhost:27017/products';
+const URI = 'mongodb://mongo:27017/products';
 const OPTS = { useNewUrlParser: true, useUnifiedTopology: true,
     useCreateIndex:true };
 

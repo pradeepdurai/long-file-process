@@ -13,6 +13,7 @@ exports.uploadCsv = (req, res) => {
             })
         }
         var result;
+        console.log("----->"+file.csvFile.path)
         csvtojson()
             .fromFile(file.csvFile.path)
             .then(csvData => {

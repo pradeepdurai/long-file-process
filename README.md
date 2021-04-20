@@ -15,7 +15,12 @@ Step 1. run the comment "docker-compose up", This will install all the necessary
 
 Step 2. In the browser type http://localhost will show the appication
 
-Points to Achieve
+## Table Schema
+
+No.1 Products -> Storing all the products data
+No.2 Productsinfo -> To Store the number of products with same name
+
+## Points to Achieve
 
 1. Followed the OOPS Concepts
 
@@ -28,3 +33,10 @@ link : http://localhost/list/products
 link : http://localhost/list/count
 
 5. updating data when upload the same csv file for two times exist collection will get update it won't allow one more inser operation if the record already exits it will update the values if it is not there it will insert the new values
+
+##  Not done from “Points to achieve”
+1. Updating a Single Product
+
+## What would you improve if given more days
+i will find the better solution to store the data in more efficent way
+

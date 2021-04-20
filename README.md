@@ -1,12 +1,14 @@
 # long-file-process
 
-Technology Used:
+#### Technology Used:
+
 Node.js
 Express.js
 Express-handlebars (for fron-end)
 Mongodb
 
-Steps to run the assignment
+## Steps to run the assignment
+
 This project is Dockerized 
 
 Step 1. run the comment "docker-compose up", This will install all the necessary things

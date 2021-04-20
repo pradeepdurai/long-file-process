@@ -6,6 +6,7 @@ const product = require('../Models/product')
 exports.uploadCsv = (req, res) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
+    //Parsing the CSV files 
     form.parse(req, (err, fields, file) => {
         if (err) {
             return res.status(400).json({
@@ -13,10 +14,11 @@ exports.uploadCsv = (req, res) => {
             })
         }
         var result;
-        console.log("----->"+file.csvFile.path)
+        // Changing the csv to MongoDB Document Formet
         csvtojson()
             .fromFile(file.csvFile.path)
             .then(csvData => {
+                // Creating The Child Process For Insert or Updating the CSV Data
                 const childProcess = fork('./uploadCsv.js');
                 childProcess.send({ "csvData": csvData })
                 childProcess.on("message", message => { 

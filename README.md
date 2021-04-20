@@ -27,12 +27,12 @@ No.2 Productsinfo -> To Store the number of products with same name
 2. This application supports for regular non-blocking ingestion, able to process multiple request parllelly it doesn't wait for previous process to complete
 
 3. All Products all insert to single collection called products. can see in the 
-link : http://localhost/list/products
+link : http://localhost/list/products after docker installation
 
-4. An aggreated collection will show the count of product with same name can see in the
+4. An aggregate collection will show the count of product with same name can see in the
 link : http://localhost/list/count
 
-5. updating data when upload the same csv file for two times exist collection will get update it won't allow one more inser operation if the record already exits it will update the values if it is not there it will insert the new values
+5. updating data --> when user uploads the same csv file for two times exist collection will get updated it won't allow one more insert operation if the record already exits, it will update the values if it is not there in collection then it will insert the new values
 
 ##  Not done from “Points to achieve”
 1. Updating a Single Product

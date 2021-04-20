@@ -4,6 +4,7 @@
     <div class="form-group">
     <label for="Import Csv" class="text-default">Import CSV</label>
     <input type="file" name="csvFile" class="form-control" id="csvFile"  placeholder="Enter email">
+    <p class="err" style="color: red; display: none">Please Enter the Valid Csv File </p>
   </div>
   <div class="row">
       <div class="col-1"> <button type="submit" class="btn btn-primary">Submit</button></div>
@@ -23,6 +24,7 @@
                 data.set('csvFile', file)
                 return true;
             } else {
+                $(".err").show();
                 return false;
             }
         })

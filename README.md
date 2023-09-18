@@ -34,9 +34,6 @@ link : http://localhost/list/count
 
 5. updating data --> when user uploads the same csv file for two times exist collection will get updated it won't allow one more insert operation if the record already exits, it will update the values if it is not there in collection then it will insert the new values
 
-##  Not done from “Points to achieve”
-1. Updating a Single Product
-
 ## What would you improve if given more days
 i will find the better solution to store the data in more efficent way
 
